@@ -20,4 +20,7 @@
 - [x] Verify the new CTA, WhatsApp button, and map in both themes.
 - [x] Show the shop name clearly below the map.
 - [x] Verify the Arabic and English location labels.
+- [x] Set night-mode text to ivory/white with readable secondary gray.
+- [x] Fix dark-mode mobile menu background and contrast.
+- [x] Verify service cards, hero, map label, and menu on mobile.
 - [ ] Save a checkpoint for the updated project.
