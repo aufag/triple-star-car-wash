@@ -9,4 +9,6 @@
 - [x] Add a light/dark mode toggle with persisted preference.
 - [x] Add Arabic/English content and RTL/LTR switching.
 - [x] Verify both language modes and themes on desktop and mobile.
+- [x] Make dark mode the default on first visit.
+- [x] Verify the default dark appearance and light-mode toggle.
 - [ ] Save a checkpoint for the updated project.

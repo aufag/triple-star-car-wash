@@ -20,7 +20,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [language, setLanguage] = useState<"ar" | "en">(() => (localStorage.getItem("triple-star-language") as "ar" | "en") || "ar");
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("triple-star-theme") === "dark");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("triple-star-theme-v2") !== "light");
   const isAr = language === "ar";
   const r = (ar: string, en: string) => isAr ? ar : en;
 
@@ -32,7 +32,7 @@ export default function Home() {
 
   const closeMenu = () => setMenuOpen(false);
   useEffect(() => { localStorage.setItem("triple-star-language", language); document.documentElement.lang = language; document.documentElement.dir = isAr ? "rtl" : "ltr"; }, [language, isAr]);
-  useEffect(() => { localStorage.setItem("triple-star-theme", darkMode ? "dark" : "light"); }, [darkMode]);
+  useEffect(() => { localStorage.setItem("triple-star-theme-v2", darkMode ? "dark" : "light"); }, [darkMode]);
 
   return (
     <div dir={isAr ? "rtl" : "ltr"} lang={language} className={`site-shell ${darkMode ? "night-mode" : ""}`}>
