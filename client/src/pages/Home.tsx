@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Check, Clock3, Droplets, MapPin, Menu, Moon, Phone, ShieldCheck, Sparkles, Sun, X, Zap } from "lucide-react";
 
-const HERO_IMAGE = "/manus-storage/triple-star-clean-result-user_33e36b34.jpg";
-const MARK_IMAGE = "/manus-storage/triple-star-logo-transparent_1648bf5a.png";
+const HERO_IMAGE = "/manus-storage/triple-star-hero-night_e5649219.jpg";
+const MARK_IMAGE = "/manus-storage/triple-star-logo-vivid_153bb60b.png";
 
 const services = [
   { icon: Droplets, ar: { title: "غسيل داخلي وخارجي", text: "عناية كاملة تترك السيارة نظيفة من الداخل والخارج." }, en: { title: "Inside & outside wash", text: "Complete care that leaves your car clean inside and out." } },

@@ -11,4 +11,7 @@
 - [x] Verify both language modes and themes on desktop and mobile.
 - [x] Make dark mode the default on first visit.
 - [x] Verify the default dark appearance and light-mode toggle.
+- [x] Upload the new blue car logo asset.
+- [x] Replace the current hero image with the new dark car-wash image.
+- [x] Verify the logo and hero image in the dark default theme.
 - [ ] Save a checkpoint for the updated project.
