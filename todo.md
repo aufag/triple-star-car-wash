@@ -14,4 +14,8 @@
 - [x] Upload the new blue car logo asset.
 - [x] Replace the current hero image with the new dark car-wash image.
 - [x] Verify the logo and hero image in the dark default theme.
+- [x] Add a floating WhatsApp button.
+- [x] Add the bottom location map section.
+- [x] Replace direction CTA text with «توجه إلينا» and its English equivalent.
+- [x] Verify the new CTA, WhatsApp button, and map in both themes.
 - [ ] Save a checkpoint for the updated project.

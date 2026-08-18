@@ -1,6 +1,6 @@
 /* Ivory Precision: Apple-inspired editorial layout, ivory canvas, charcoal depth, champagne-gold accents. */
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Check, Clock3, Droplets, MapPin, Menu, Moon, Phone, ShieldCheck, Sparkles, Sun, X, Zap } from "lucide-react";
+import { ArrowUpRight, Check, Clock3, Droplets, MapPin, Menu, Moon, Phone, ShieldCheck, Sparkles, Sun, X, Zap, MessageCircle } from "lucide-react";
 
 const HERO_IMAGE = "/manus-storage/triple-star-hero-night_e5649219.jpg";
 const MARK_IMAGE = "/manus-storage/triple-star-logo-vivid_153bb60b.png";
@@ -59,7 +59,7 @@ export default function Home() {
             <p>{r("غسيل داخلي وخارجي سريع، فريق محترف، وتجربة انتظار مريحة في Triple Star Car Wash.", "Fast inside-and-out washing, a professional team, and a comfortable wait at Triple Star Car Wash.")}</p>
             <div className="hero-actions">
               <a className="primary-button" href="tel:+97433022544">{r("احجز زيارتك الآن", "Book your visit")} <ArrowUpRight size={17} /></a>
-              <a className="text-link" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> {r("احصل على الاتجاهات", "Get directions")}</a>
+              <a className="text-link" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> {r("توجه إلينا", "Visit us")}</a>
             </div>
             <div className="trust-row"><span><Check size={14} /> {r("غسيل داخلي وخارجي", "Inside & outside wash")}</span><span><Check size={14} /> {r("منطقة انتظار مريحة", "Comfortable lounge")}</span></div>
           </div>
@@ -89,8 +89,11 @@ export default function Home() {
 
         <section id="reviews" className="section reviews-section"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> {r("من عملائنا", "From our customers")}</div><h2>{r("كلام يلمع", "Words that shine")}<br /><em>{r("مثل النتيجة.", "like the result.")}</em></h2></div><div className="review-score"><strong>4.8</strong><div><span className="stars">★★★★★</span><small>{r("من 137 مراجعة على Google", "From 137 Google reviews")}</small></div></div></div><div className="review-grid">{reviews[language].map((review, index) => <article className="review-card" key={review}><div className="review-top"><span className="stars">★★★★★</span><span>0{index + 1}</span></div><p>“{review}”</p><div className="review-source"><ShieldCheck size={14} /> {r("تجربة موثقة من العملاء", "Verified customer experience")}</div></article>)}</div></section>
 
+        <section id="location" className="location-section"><div className="location-copy"><div className="eyebrow"><span className="eyebrow-line" /> {r("موقعنا", "Find us")}</div><h2>{r("توجه إلينا", "Come see us")}.<br /><em>{r("ننتظرك.", "We are ready.")}</em></h2><p>{r("نحن في موقع واضح وسهل الوصول على طريق B Ring Road في الدوحة.", "Find us on B Ring Road in Doha, with easy access and clear directions.")}</p><a className="primary-button" href="https://maps.google.com/?q=25.2786128,51.5422532" target="_blank" rel="noreferrer"><MapPin size={16} /> {r("افتح الخريطة", "Open map")}</a></div><div className="map-frame"><iframe title={r("خريطة موقع Triple Star Car Wash", "Triple Star Car Wash location map")} src="https://www.google.com/maps?q=25.2786128,51.5422532&z=16&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></section>
+
         <section id="contact" className="contact-section"><div className="contact-content"><div className="eyebrow light"><span className="eyebrow-line" /> {r("جاهز للمعان القادم؟", "Ready for the next shine?")}</div><h2>{r("اترك الباقي", "Leave the rest")}<br /><em>{r("علينا.", "to us.")}</em></h2><p>{r("اتصل بنا أو احصل على الاتجاهات الآن.", "Call us or get directions now.")}</p><div className="contact-actions"><a className="gold-button" href="tel:+97433022544"><Phone size={16} /> +974 3302 2544</a><a className="outline-button" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> B Ring Rd، Doha</a></div></div><div className="contact-mark"><img src={MARK_IMAGE} alt="Triple Star Car Wash" /><span>TRIPLE STAR<br />CAR WASH</span></div></section>
       </main>
+      <a className="whatsapp-float" href="https://wa.me/97433022544" target="_blank" rel="noreferrer" aria-label={r("تواصل معنا عبر واتساب", "Contact us on WhatsApp")}><MessageCircle size={24} /><span>{r("واتساب", "WhatsApp")}</span></a>
       <footer><span>© {new Date().getFullYear()} Triple Star Car Wash</span><span>{r("دقة في كل تفصيلة.", "Precision in every detail.")}</span></footer>
     </div>
   );
