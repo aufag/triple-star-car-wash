@@ -23,4 +23,6 @@
 - [x] Set night-mode text to ivory/white with readable secondary gray.
 - [x] Fix dark-mode mobile menu background and contrast.
 - [x] Verify service cards, hero, map label, and menu on mobile.
+- [x] Force readable ivory text for review-card quotes and all night-mode content.
+- [x] Verify reviews, services, map, footer, and mobile layout in night mode.
 - [ ] Save a checkpoint for the updated project.
