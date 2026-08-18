@@ -29,8 +29,9 @@
 - [x] Verify the rating in dark and light themes.
 - [x] Fix the large 4.8 review score in the customer reviews section.
 - [x] Verify review score contrast on desktop and mobile.
-- [ ] Identify the connected GitHub repository and branch.
-- [ ] Add GitHub Pages deployment configuration.
-- [ ] Publish the built site to GitHub Pages.
-- [ ] Verify the public GitHub Pages URL.
+- [x] Identify the connected GitHub repository and branch.
+- [x] Add GitHub Pages deployment configuration.
+- [x] Make the GitHub repository public after user confirmation.
+- [x] Publish the built site to GitHub Pages after Pages enablement.
+- [x] Verify the public GitHub Pages URL.
 - [ ] Save a checkpoint for the updated project.
