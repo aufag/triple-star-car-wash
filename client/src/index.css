@@ -217,9 +217,9 @@ body { background: var(--ivory); color: var(--ink); font-family: "Noto Sans Arab
 .reviews-section { padding-bottom: 110px; }
 .section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 45px; direction: rtl; }
 .section-heading h2 { margin-bottom: 0; }
-.review-score { display: flex; align-items: center; gap: 15px; direction: ltr; }
+.review-score { display: flex; align-items: center; gap: 12px; direction: ltr; color: var(--ink); } .review-score strong { color: var(--ink); } .review-score .stars { color: var(--gold); }
 .review-score strong { font-size: 52px; letter-spacing: -.06em; }
-.review-score small { display: block; margin-top: 4px; color: var(--muted-ink); font-size: 10px; }
+.review-score small { display: block; margin-top: 4px; color: var(--muted-ink); font-size: 10px; } .site-shell.night-mode .review-score, .site-shell.night-mode .review-score strong { color: #f5f1e8 !important; } .site-shell.night-mode .review-score small { color: #c9c7be !important; } .site-shell.night-mode .review-score .stars { color: var(--gold) !important; }
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; direction: rtl; }
 .review-card { padding: 25px; background: #fff; border-radius: 18px; border: 1px solid var(--line); }
 .review-top { display: flex; justify-content: space-between; direction: ltr; color: var(--muted-ink); font-size: 11px; }

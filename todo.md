@@ -27,4 +27,6 @@
 - [x] Verify reviews, services, map, footer, and mobile layout in night mode.
 - [x] Fix the Google rating 4.8 number and label contrast in the stats strip.
 - [x] Verify the rating in dark and light themes.
+- [x] Fix the large 4.8 review score in the customer reviews section.
+- [x] Verify review score contrast on desktop and mobile.
 - [ ] Save a checkpoint for the updated project.
