@@ -18,4 +18,6 @@
 - [x] Add the bottom location map section.
 - [x] Replace direction CTA text with «توجه إلينا» and its English equivalent.
 - [x] Verify the new CTA, WhatsApp button, and map in both themes.
+- [x] Show the shop name clearly below the map.
+- [x] Verify the Arabic and English location labels.
 - [ ] Save a checkpoint for the updated project.
