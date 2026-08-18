@@ -1,25 +1,28 @@
 /* Ivory Precision: Apple-inspired editorial layout, ivory canvas, charcoal depth, champagne-gold accents. */
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Clock3, Droplets, MapPin, Menu, Phone, ShieldCheck, Sparkles, Star, X, Zap } from "lucide-react";
+import { ArrowUpRight, Check, Clock3, Droplets, MapPin, Menu, Moon, Phone, ShieldCheck, Sparkles, Sun, X, Zap } from "lucide-react";
 
-const HERO_IMAGE = "/manus-storage/triple-star-hero_dd31e918.jpg";
-const MARK_IMAGE = "/manus-storage/triple-star-logo_66485781.png";
+const HERO_IMAGE = "/manus-storage/triple-star-clean-result-user_33e36b34.jpg";
+const MARK_IMAGE = "/manus-storage/triple-star-logo-transparent_1648bf5a.png";
 
 const services = [
-  { icon: Droplets, title: "غسيل داخلي وخارجي", text: "عناية كاملة تترك السيارة نظيفة من الداخل والخارج." },
-  { icon: Sparkles, title: "تلميع وعناية", text: "لمسات دقيقة تعيد للسيارة حضورها ولمعانها." },
-  { icon: Zap, title: "خدمة سريعة", text: "ننجزها بكفاءة، لأن وقتك مهم." },
+  { icon: Droplets, ar: { title: "غسيل داخلي وخارجي", text: "عناية كاملة تترك السيارة نظيفة من الداخل والخارج." }, en: { title: "Inside & outside wash", text: "Complete care that leaves your car clean inside and out." } },
+  { icon: Sparkles, ar: { title: "تلميع وعناية", text: "لمسات دقيقة تعيد للسيارة حضورها ولمعانها." }, en: { title: "Polish & detailing", text: "Precise finishing that brings back the shine." } },
+  { icon: Zap, ar: { title: "خدمة سريعة", text: "ننجزها بكفاءة، لأن وقتك مهم." }, en: { title: "Fast service", text: "Efficient work because your time matters." } },
 ];
 
-const reviews = [
-  "الخدمة سريعة والنتيجة ممتازة، والسيارة خرجت نظيفة من الداخل والخارج.",
-  "فريق محترف ومحترم وأسعار مناسبة لجودة الخدمة.",
-  "منطقة انتظار مريحة ومكيّفة مع مشروبات باردة.",
-];
+const reviews = {
+  ar: ["الخدمة سريعة والنتيجة ممتازة، والسيارة خرجت نظيفة من الداخل والخارج.", "فريق محترف ومحترم وأسعار مناسبة لجودة الخدمة.", "منطقة انتظار مريحة ومكيّفة مع مشروبات باردة."],
+  en: ["Fast service and an excellent result. My car came out clean inside and out.", "Professional, respectful team with pricing that feels right for the quality.", "A comfortable, cool waiting area with cold refreshments."]
+};
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [language, setLanguage] = useState<"ar" | "en">(() => (localStorage.getItem("triple-star-language") as "ar" | "en") || "ar");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("triple-star-theme") === "dark");
+  const isAr = language === "ar";
+  const r = (ar: string, en: string) => isAr ? ar : en;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,65 +31,67 @@ export default function Home() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  useEffect(() => { localStorage.setItem("triple-star-language", language); document.documentElement.lang = language; document.documentElement.dir = isAr ? "rtl" : "ltr"; }, [language, isAr]);
+  useEffect(() => { localStorage.setItem("triple-star-theme", darkMode ? "dark" : "light"); }, [darkMode]);
 
   return (
-    <div dir="rtl" className="site-shell">
+    <div dir={isAr ? "rtl" : "ltr"} lang={language} className={`site-shell ${darkMode ? "night-mode" : ""}`}>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <a className="brand" href="#top" onClick={closeMenu} aria-label="Triple Star Car Wash">
-          <img src={MARK_IMAGE} alt="" />
+          <img src={MARK_IMAGE} alt="Triple Star Car Wash logo" />
           <span><strong>TRIPLE</strong> STAR</span>
         </a>
         <nav className={`desktop-nav ${menuOpen ? "open" : ""}`} aria-label="التنقل الرئيسي">
-          <a href="#services" onClick={closeMenu}>خدماتنا</a>
-          <a href="#why-us" onClick={closeMenu}>لماذا نحن</a>
-          <a href="#reviews" onClick={closeMenu}>التقييمات</a>
-          <a href="#contact" onClick={closeMenu}>تواصل معنا</a>
+          <a href="#services" onClick={closeMenu}>{r("خدماتنا", "Services")}</a>
+          <a href="#why-us" onClick={closeMenu}>{r("لماذا نحن", "Why us")}</a>
+          <a href="#reviews" onClick={closeMenu}>{r("التقييمات", "Reviews")}</a>
+          <a href="#contact" onClick={closeMenu}>{r("تواصل معنا", "Contact")}</a>
         </nav>
-        <a className="header-cta" href="tel:+97433022544"><Phone size={15} /> احجز الآن</a>
+        <div className="header-tools"><button className="mode-button" onClick={() => setDarkMode(!darkMode)} aria-label={r("تبديل الوضع الليلي", "Toggle dark mode")}>{darkMode ? <Sun size={16} /> : <Moon size={16} />}</button><button className="language-button" onClick={() => setLanguage(isAr ? "en" : "ar")} aria-label={r("تغيير اللغة إلى الإنجليزية", "Switch to Arabic")}>{isAr ? "EN" : "ع"}</button><a className="header-cta" href="tel:+97433022544"><Phone size={15} /> {r("احجز الآن", "Book now")}</a></div>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="فتح القائمة">{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
       </header>
 
       <main id="top">
         <section className="hero-section">
           <div className="hero-copy reveal">
-            <div className="eyebrow"><span className="eyebrow-line" /> غسيل سيارات احترافي في الدوحة</div>
-            <h1>سيارتك تستحق<br /><em>لمعانًا</em> استثنائيًا.</h1>
-            <p>غسيل داخلي وخارجي سريع، فريق محترف، وتجربة انتظار مريحة في Triple Star Car Wash.</p>
+            <div className="eyebrow"><span className="eyebrow-line" /> {r("غسيل سيارات احترافي في الدوحة", "Professional car wash in Doha")}</div>
+            <h1>{r("سيارتك تستحق", "Your car deserves")}<br /><em>{r("لمعانًا", "an exceptional")} </em>{r("استثنائيًا.", "shine.")}</h1>
+            <p>{r("غسيل داخلي وخارجي سريع، فريق محترف، وتجربة انتظار مريحة في Triple Star Car Wash.", "Fast inside-and-out washing, a professional team, and a comfortable wait at Triple Star Car Wash.")}</p>
             <div className="hero-actions">
-              <a className="primary-button" href="tel:+97433022544">احجز زيارتك الآن <ArrowUpRight size={17} /></a>
-              <a className="text-link" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> احصل على الاتجاهات</a>
+              <a className="primary-button" href="tel:+97433022544">{r("احجز زيارتك الآن", "Book your visit")} <ArrowUpRight size={17} /></a>
+              <a className="text-link" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> {r("احصل على الاتجاهات", "Get directions")}</a>
             </div>
-            <div className="trust-row"><span><Check size={14} /> غسيل داخلي وخارجي</span><span><Check size={14} /> منطقة انتظار مريحة</span></div>
+            <div className="trust-row"><span><Check size={14} /> {r("غسيل داخلي وخارجي", "Inside & outside wash")}</span><span><Check size={14} /> {r("منطقة انتظار مريحة", "Comfortable lounge")}</span></div>
           </div>
           <div className="hero-visual reveal-delay">
             <img src={HERO_IMAGE} alt="سيارة لامعة داخل مركز غسيل Triple Star" />
-            <div className="hero-badge"><span className="stars">★★★★★</span><strong>4.8 / 5</strong><small>تقييم Google</small></div>
+            <div className="hero-badge"><span className="stars">★★★★★</span><strong>4.8 / 5</strong><small>{r("تقييم Google", "Google rating")}</small></div>
             <div className="hero-caption"><span>01</span><span>TRIPLE STAR DETAIL BAY</span></div>
           </div>
         </section>
 
         <section className="stats-strip" aria-label="إحصائيات المغسلة">
-          <div><strong>4.8<span>/5</span></strong><small>تقييم Google</small></div>
-          <div><strong>137</strong><small>مراجعة منشورة</small></div>
-          <div><strong>30 <span>ر.ق</span></strong><small>للسيارة الكبيرة حسب تقييم</small></div>
-          <div><strong>22:00</strong><small>موعد الإغلاق الظاهر</small></div>
+          <div><strong>4.8<span>/5</span></strong><small>{r("تقييم Google", "Google rating")}</small></div>
+          <div><strong>137</strong><small>{r("مراجعة منشورة", "Published reviews")}</small></div>
+          <div><strong>30 <span>{r("ر.ق", "QAR")}</span></strong><small>{r("للسيارة الكبيرة حسب تقييم", "Large car, per review")}</small></div>
+          <div><strong>22:00</strong><small>{r("موعد الإغلاق الظاهر", "Listed closing time")}</small></div>
         </section>
 
         <section id="services" className="section services-section">
-          <div className="section-intro"><div className="eyebrow"><span className="eyebrow-line" /> عناية تستحقها</div><h2>كل تفصيلة<br /><em>تفرق.</em></h2></div>
-          <div className="service-grid">{services.map(({ icon: Icon, title, text }) => <article className="service-card" key={title}><div className="service-icon"><Icon size={21} strokeWidth={1.5} /></div><h3>{title}</h3><p>{text}</p><span className="card-arrow"><ArrowUpRight size={17} /></span></article>)}</div>
+          <div className="section-intro"><div className="eyebrow"><span className="eyebrow-line" /> {r("عناية تستحقها", "Care that shows")}</div><h2>{r("كل تفصيلة", "Every detail")}<br /><em>{r("تفرق.", "matters.")}</em></h2></div>
+          <div className="service-grid">{services.map(({ icon: Icon, ar, en }) => { const item = isAr ? ar : en; return <article className="service-card" key={item.title}><div className="service-icon"><Icon size={21} strokeWidth={1.5} /></div><h3>{item.title}</h3><p>{item.text}</p><span className="card-arrow"><ArrowUpRight size={17} /></span></article>; })}</div>
         </section>
 
         <section id="why-us" className="section split-section">
-          <div className="split-panel dark-panel"><div className="panel-mark">✦ ✦ ✦</div><div className="eyebrow light"><span className="eyebrow-line" /> تجربة مختلفة</div><h2>نظافة تلمع.<br /><em>خدمة تليق بك.</em></h2><p>من أول لحظة وصولك، نعمل على أن تكون التجربة بسيطة، سريعة، ومريحة.</p><a className="light-link" href="tel:+97433022544">تواصل معنا <ArrowUpRight size={16} /></a></div>
-          <div className="split-panel lounge-panel"><div className="lounge-overlay"><span className="eyebrow"><span className="eyebrow-line" /> أثناء انتظارك</span><h3>خذ وقتك.<br />نحن نهتم بالباقي.</h3><p><Clock3 size={15} /> منطقة انتظار مكيّفة ومريحة</p></div></div>
+          <div className="split-panel dark-panel"><div className="panel-mark">✦ ✦ ✦</div><div className="eyebrow light"><span className="eyebrow-line" /> {r("تجربة مختلفة", "A better experience")}</div><h2>{r("نظافة تلمع.", "A clean that shines.")}<br /><em>{r("خدمة تليق بك.", "A service that fits.")}</em></h2><p>{r("من أول لحظة وصولك، نعمل على أن تكون التجربة بسيطة، سريعة، ومريحة.", "From arrival to handover, we keep the experience simple, fast, and comfortable.")}</p><a className="light-link" href="tel:+97433022544">{r("تواصل معنا", "Talk to us")} <ArrowUpRight size={16} /></a></div>
+          <div className="split-panel lounge-panel"><div className="lounge-overlay"><span className="eyebrow"><span className="eyebrow-line" /> {r("أثناء انتظارك", "While you wait")}</span><h3>{r("خذ وقتك.", "Take your time.")}<br />{r("نحن نهتم بالباقي.", "We handle the rest.")}</h3><p><Clock3 size={15} /> {r("منطقة انتظار مكيّفة ومريحة", "A cool, comfortable lounge")}</p></div></div>
         </section>
 
-        <section id="reviews" className="section reviews-section"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> من عملائنا</div><h2>كلام يلمع<br /><em>مثل النتيجة.</em></h2></div><div className="review-score"><strong>4.8</strong><div><span className="stars">★★★★★</span><small>من 137 مراجعة على Google</small></div></div></div><div className="review-grid">{reviews.map((review, index) => <article className="review-card" key={review}><div className="review-top"><span className="stars">★★★★★</span><span>0{index + 1}</span></div><p>“{review}”</p><div className="review-source"><ShieldCheck size={14} /> تجربة موثقة من العملاء</div></article>)}</div></section>
+        <section id="reviews" className="section reviews-section"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> {r("من عملائنا", "From our customers")}</div><h2>{r("كلام يلمع", "Words that shine")}<br /><em>{r("مثل النتيجة.", "like the result.")}</em></h2></div><div className="review-score"><strong>4.8</strong><div><span className="stars">★★★★★</span><small>{r("من 137 مراجعة على Google", "From 137 Google reviews")}</small></div></div></div><div className="review-grid">{reviews[language].map((review, index) => <article className="review-card" key={review}><div className="review-top"><span className="stars">★★★★★</span><span>0{index + 1}</span></div><p>“{review}”</p><div className="review-source"><ShieldCheck size={14} /> {r("تجربة موثقة من العملاء", "Verified customer experience")}</div></article>)}</div></section>
 
-        <section id="contact" className="contact-section"><div className="contact-content"><div className="eyebrow light"><span className="eyebrow-line" /> جاهز للمعان القادم؟</div><h2>اترك الباقي<br /><em>علينا.</em></h2><p>اتصل بنا أو احصل على الاتجاهات الآن.</p><div className="contact-actions"><a className="gold-button" href="tel:+97433022544"><Phone size={16} /> +974 3302 2544</a><a className="outline-button" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> B Ring Rd، الدوحة</a></div></div><div className="contact-mark"><img src={MARK_IMAGE} alt="" /><span>TRIPLE STAR<br />CAR WASH</span></div></section>
+        <section id="contact" className="contact-section"><div className="contact-content"><div className="eyebrow light"><span className="eyebrow-line" /> {r("جاهز للمعان القادم؟", "Ready for the next shine?")}</div><h2>{r("اترك الباقي", "Leave the rest")}<br /><em>{r("علينا.", "to us.")}</em></h2><p>{r("اتصل بنا أو احصل على الاتجاهات الآن.", "Call us or get directions now.")}</p><div className="contact-actions"><a className="gold-button" href="tel:+97433022544"><Phone size={16} /> +974 3302 2544</a><a className="outline-button" href="https://maps.google.com/?q=Triple+Star+Car+Wash+Doha" target="_blank" rel="noreferrer"><MapPin size={16} /> B Ring Rd، Doha</a></div></div><div className="contact-mark"><img src={MARK_IMAGE} alt="Triple Star Car Wash" /><span>TRIPLE STAR<br />CAR WASH</span></div></section>
       </main>
-      <footer><span>© {new Date().getFullYear()} Triple Star Car Wash</span><span>دقة في كل تفصيلة.</span></footer>
+      <footer><span>© {new Date().getFullYear()} Triple Star Car Wash</span><span>{r("دقة في كل تفصيلة.", "Precision in every detail.")}</span></footer>
     </div>
   );
 }
