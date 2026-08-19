@@ -34,4 +34,8 @@
 - [x] Make the GitHub repository public after user confirmation.
 - [x] Publish the built site to GitHub Pages after Pages enablement.
 - [x] Verify the public GitHub Pages URL.
+- [x] Confirm the original Google Maps location and coordinates.
+- [x] Replace the incorrect map embed and directions URL.
+- [x] Verify the location name, map, and directions button.
+- [ ] Rebuild and republish the site.
 - [ ] Save a checkpoint for the updated project.
